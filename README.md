@@ -6,6 +6,9 @@ The neovim package specification supports a single, top-level package metadata f
 
 * `version` : String, the version of the package. Should obey semantic versioning conventions and be prefixed with a `v`, for example, `v0.1.0`
 
+* `specification_version` : String, the current specification version. (v0.1.0) at this time.
+
+
 * `source` : Table, the source is a table that contains a `url` field, which points to either the git commit of the current version of the package, or the source tarball.
 
 * `description` : Table, the description is a table that includes the following nested fields:
@@ -22,6 +25,7 @@ The neovim package specification supports a single, top-level package metadata f
 ```lua
 package = "lspconfig"
 version = "v0.1.2"
+specification_version = "v0.1.0"
 source = {
    url = "https://github.com/neovim/nvim-lspconfig/archive/refs/tags/v0.1.2.tar.gz"
 }
@@ -43,6 +47,7 @@ And in json format
 {
   "package" : "lspconfig",
   "version" : "v0.1.2",
+  "specification_version" : "v0.1.0",
   "source" : {
     "url" : "https://github.com/neovim/nvim-lspconfig/archive/refs/tags/v0.1.2.tar.gz"
   },
