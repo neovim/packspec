@@ -1,0 +1,1 @@
+# nvim-package-specification
