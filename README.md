@@ -20,6 +20,9 @@ The neovim package specification supports a single, top-level package metadata f
 * `dependencies`
 ** TBD
 
+* `dependency_sources`
+** TBD
+
 # Example
 
 ```lua
@@ -38,8 +41,13 @@ description = {
    license = "Apache-2.0" 
 }
 dependencies = {
-   "neovim >= 0.6.1"
+   "neovim >= 0.6.1",
+   "gitsigns >= 0.4",
 }
+dependency_sources = {
+   neovim = "https://github.com/neovim/neovim.git",
+   gitsigns = "https://github.com/lewis6991/gitsigns.nvim.git"
+} 
 ```
 
 And in json format
@@ -58,7 +66,12 @@ And in json format
     "license" : "Apache-2.0" 
   },
   "dependencies" : {
-     "neovim >: 0.6.1"
+     "neovim >= 0.6.1",
+     "gitsigns >= 0.4"
+  }
+  "dependency_sources" : {
+     "neovim": "https://github.com/neovim/neovim.git",
+     "gitsigns": "https://github.com/lewis6991/gitsigns.nvim.git"
   }
 }
 ```
