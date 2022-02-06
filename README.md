@@ -15,7 +15,7 @@ The neovim package specification supports a single, top-level package metadata f
 	* `summary` : String, a short description of the package, typically less than 100 character long.
 	* `detailed` : String, a long-form description of the package, this should convey the package's principal functionality to the user without being as detailed as the package readme.
 	* `homepage` : This is the homepage of the package, which in most cases will be the GitHub URL.
-	* `License` : This is the License type of the package.
+	* `License` : This is [SPDX](https://spdx.org/licenses/) license identifier. Dual licensing is indicated via joining the relevant licenses via `/`.
 
 * `dependencies`
 ** TBD
