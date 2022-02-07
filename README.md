@@ -1,6 +1,6 @@
 # Plugin metadata specification
 
-The neovim package specification supports a single, top-level package metadata file. This file can be *either* 'plugin.lua' or 'plugin.json'. The file is a superset of the Rockspec File Format and can contain the following fields
+The neovim package specification supports a single, top-level package metadata file. This file can be *either* 'plugin.lua' or 'plugin.json'. The format is loosely based on the [Rockspec Format](https://github.com/luarocks/luarocks/wiki/Rockspec-format) and can contain the following fields:
 
 * `package` : String, the name of the package
 
