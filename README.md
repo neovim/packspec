@@ -4,7 +4,7 @@ The neovim package specification supports a single, top-level package metadata f
 
 * `package` : String, the name of the package
 
-* `version` : String, the version of the package. Should obey semantic versioning conventions, for example `0.1.0`. For all version identifiers, implementation should check for a `version` prefixed with `v` in the git repository, as this is a common convention.
+* `version` : String, the version of the package. Should obey semantic versioning conventions, for example `0.1.0`. Plugins should have a git commit with a `tag` matching this version. For all version identifiers, implementation should check for a `version` prefixed with `v` in the git repository, as this is a common convention.
 
 * `specification_version` : String, the current specification version. (0.1.0) at this time.
 
