@@ -19,9 +19,6 @@ The neovim package specification supports a single, top-level package metadata f
 * `dependencies`
 ** TBD
 
-* `dependency_sources`
-** TBD
-
 # Example
 
 ```lua
@@ -29,7 +26,7 @@ package = "lspconfig"
 version = "0.1.2"
 specification_version = "0.1.0"
 source = {
-  url = "git://github.com/neovim/nvim-lspconfig.git",
+  url = "https://github.com/neovim/nvim-lspconfig.git",
 }
 description = {
    summary = "Quickstart configurations for the Nvim-lsp client",
@@ -40,13 +37,15 @@ description = {
    license = "Apache-2.0" 
 }
 dependencies = {
-   "neovim >= 0.6.1",
-   "gitsigns >= 0.4",
+   neovim = {
+      version = ">= 0.6.1",
+      source = "https://github.com/neovim/neovim.git"
+   },
+   gitsigns = {
+      version = "> 0.3",
+      source = "https://github.com/lewis6991/gitsigns.nvim.git"
+   }
 }
-dependency_sources = {
-   neovim = "https://github.com/neovim/neovim.git",
-   gitsigns = "https://github.com/lewis6991/gitsigns.nvim.git"
-} 
 ```
 
 And in json format
@@ -56,22 +55,23 @@ And in json format
   "version" : "0.1.2",
   "specification_version" : "0.1.0",
   "source" : {
-     "url" : "git://github.com/neovim/nvim-lspconfig.git",
-     "tag" : "0.1.2",
+     "url" : "https://github.com/neovim/nvim-lspconfig.git",
   },
   "description" : {
     "summary" : "Quickstart configurations for the Nvim-lsp client",
-    "detailed" : "lspconfig is a set of configurations for language servers for use with Neovim's built-in language server client. Lspc onfig handles configuring, launching, and attaching language servers",
+    "detailed" : "lspconfig is a set of configurations for language servers for use with Neovim's built-in language server client. Lspconfig handles configuring, launching, and attaching language servers",
     "homepage" : "https://github.com/neovim/nvim-lspconfig/", 
     "license" : "Apache-2.0" 
   },
   "dependencies" : {
-     "neovim >= 0.6.1",
-     "gitsigns >= 0.4"
-  }
-  "dependency_sources" : {
-     "neovim": "https://github.com/neovim/neovim.git",
-     "gitsigns": "https://github.com/lewis6991/gitsigns.nvim.git"
+    "neovim" : {
+      "version" : ">= 0.6.1",
+      "source" : "https://github.com/neovim/neovim.git"
+    },
+    "gitsigns" : {
+      "version" : "> 0.3",
+      "source" : "https://github.com/lewis6991/gitsigns.nvim.git"
+    }
   }
 }
 ```
