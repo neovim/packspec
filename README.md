@@ -17,7 +17,7 @@ The neovim package specification supports a single, top-level package metadata f
 	* `license` : This is [SPDX](https://spdx.org/licenses/) license identifier. Dual licensing is indicated via joining the relevant licenses via `/`.
 
 * `dependencies`
-  * `version` Taken from rockspec. Accepted operators are the relational operators of Lua: == ~= < > <= >= , as well as a special operator, ~>, inspired by the "pessimistic operator" of RubyGems ("~> 2" means ">= 2, < 3"; "~> 2.4" means ">= 2.4, < 2.5"). No operator means an implicit == (i.e., "lfs 1.0" is the same as "lfs == 1.0"). "lua" is an special dependency name; it matches not a rock, but the version of Lua in use. Multiple version constraints can be joined with a `comma`, e.g. `"neovim >= 5.0, < 7.0".
+  * `version` Taken from rockspec. Accepted operators are the relational operators of Lua: == \~= < > <= >= , as well as a special operator, \~>, inspired by the "pessimistic operator" of RubyGems ("\~> 2" means ">= 2, < 3"; "~> 2.4" means ">= 2.4, < 2.5"). No operator means an implicit == (i.e., "lfs 1.0" is the same as "lfs == 1.0"). "lua" is an special dependency name; it matches not a rock, but the version of Lua in use. Multiple version constraints can be joined with a `comma`, e.g. `"neovim >= 5.0, < 7.0".
 
 # Example
 
