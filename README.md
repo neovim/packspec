@@ -8,7 +8,26 @@ The neovim package specification supports a single, top-level package metadata f
 
 * `specification_version` : String, the current specification version. (0.1.0) at this time.
 
-* `source` : Table, the source is a table that contains a `url` field, which points to the git repository of the current package.
+* `source` : Table, contains information on how to fetch sources. Contains a `url` field, which points to upstream repository of the package.
+    `url` (string, mandatory field) : the URL of the package source archive. Examples: "http://github.com/downloads/keplerproject/wsapi/wsapi-1.3.4.tar.gz", "git://github.com/keplerproject/wsapi.git".Different protocols are supported:
+        cvs:// - for the CVS source control manager
+        file:// - for URLs in the local filesystem (note that for Unix paths, the root slash is the third slash, resulting in paths like &quot;file&#58;///full/path/filename&quot;
+        ftp:// - for FTP URLs
+        git:// - for the Git source control manager
+        git+file:// - for the Git source control manager when using repositories that need file:// URLs
+        git+http:// - for the Git source control manager when using repositories that need http:// URLs
+        git+https:// - for the Git source control manager when using repositories that need https:// URLs
+        git+ssh:// - for the Git source control manager when using repositories that need SSH login, such as git@example.com/myrepo
+        hg:// - for the Mercurial source control manager
+        hg+http:// - for the Mercurial source control manager using repositories that need http:// URLs
+        hg+https:// - for the Mercurial source control manager using repositories that need https:// URLs
+        hg+ssh:// - for the Mercurial source control manager using repositories that need SSH login
+        http:// - for HTTP URLs
+        https:// - for HTTPS URLs
+        hg:// - for the Mercurial source control manager
+        sscm:// - for the SurroundSCM source control manager
+        svn:// - for the Subversion source control manager
+
 
 * `description` : Table, the description is a table that includes the following nested fields:
 	* `summary` : String, a short description of the package, typically less than 100 character long.
