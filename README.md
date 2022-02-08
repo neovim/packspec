@@ -73,7 +73,7 @@ And in json format
   "version" : "0.1.2",
   "specification_version" : "0.1.0",
   "source" : {
-     "url" : "https://github.com/neovim/nvim-lspconfig.git",
+     "url" : "git://github.com/neovim/nvim-lspconfig.git",
   },
   "description" : {
     "summary" : "Quickstart configurations for the Nvim-lsp client",
@@ -84,11 +84,11 @@ And in json format
   "dependencies" : {
     "neovim" : {
       "version" : ">= 0.6.1",
-      "source" : "https://github.com/neovim/neovim.git"
+      "source" : "git://github.com/neovim/neovim.git"
     },
     "gitsigns" : {
       "version" : "> 0.3",
-      "source" : "https://github.com/lewis6991/gitsigns.nvim.git"
+      "source" : "git://github.com/lewis6991/gitsigns.nvim.git"
     }
   },
   "external_dependencies" : {
