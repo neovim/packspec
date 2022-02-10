@@ -17,8 +17,6 @@ The neovim package specification supports a single, top-level package metadata f
     * `http://` - for HTTP URLs
     * `https://` - for HTTPS URLs
 
-  If a string, the `source` can directly contain the `url` string.
-
 * `description` (Table) the description is a table that includes the following nested fields:
 	* `summary` (String) a short description of the package, typically less than 100 character long.
 	* `detailed` (String) a long-form description of the package, this should convey the package's principal functionality to the user without being as detailed as the package readme.
@@ -36,7 +34,7 @@ The neovim package specification supports a single, top-level package metadata f
   * `releases_only` (Boolean) Whether the package manager should only resolve version constraints to include tagged releases.
 
 
-* `external_dependencies` (Table) Like dependencies, this specifies packages which are required for the package but should *not* be managed by the neovim package manager, such as `gcc` or `cmake`. Package managers are encouraged to provide a notification to the user if the dependency is not available.
+* `external_dependencies` (Table) Like dependencies, this specifies packages which are required for the package but should *not* be managed by the Neovim package manager, such as `gcc` or `cmake`. Package managers are encouraged to provide a notification to the user if the dependency is not available.
   * `version` (String) same as `dependencies`
 
 # Example
