@@ -43,9 +43,7 @@ The neovim package specification supports a single, top-level package metadata f
 package = "lspconfig"
 version = "0.1.2"
 specification_version = "0.1.0"
-source = {
-  url = "git://github.com/neovim/nvim-lspconfig.git",
-}
+source = "git://github.com/neovim/nvim-lspconfig.git",
 description = {
    summary = "Quickstart configurations for the Nvim-lsp client",
    detailed = [[
@@ -77,9 +75,7 @@ And in json format
   "package" : "lspconfig",
   "version" : "0.1.2",
   "specification_version" : "0.1.0",
-  "source" : {
-     "url" : "git://github.com/neovim/nvim-lspconfig.git",
-  },
+  "source" : "git://github.com/neovim/nvim-lspconfig.git",
   "description" : {
     "summary" : "Quickstart configurations for the Nvim-lsp client",
     "detailed" : "lspconfig is a set of configurations for language servers for use with Neovim's built-in language server client. Lspconfig handles configuring, launching, and attaching language servers",
