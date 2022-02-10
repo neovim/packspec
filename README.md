@@ -17,8 +17,6 @@ The neovim package specification supports a single, top-level package metadata f
     * `http://` - for HTTP URLs
     * `https://` - for HTTPS URLs
 
-  If a string, the `source` can directly contain the `url` string.
-
 * `description` (Table) the description is a table that includes the following nested fields:
 	* `summary` (String) a short description of the package, typically less than 100 character long.
 	* `detailed` (String) a long-form description of the package, this should convey the package's principal functionality to the user without being as detailed as the package readme.
