@@ -2,34 +2,42 @@
 
 The neovim package specification supports a single, top-level package metadata file. This file can be *either* 'plugin.lua' or 'plugin.json'. The format is loosely based on the [Rockspec Format](https://github.com/luarocks/luarocks/wiki/Rockspec-format) and can contain the following fields:
 
-* `package` : String, the name of the package
+* `package` (String) the name of the package
 
-* `version` : String, the version of the package. Should obey semantic versioning conventions, for example `0.1.0`. Plugins should have a git commit with a `tag` matching this version. For all version identifiers, implementation should check for a `version` prefixed with `v` in the git repository, as this is a common convention.
+* `version` (String) the version of the package. Should obey semantic versioning conventions, for example `0.1.0`. Plugins should have a git commit with a `tag` matching this version. For all version identifiers, implementation should check for a `version` prefixed with `v` in the git repository, as this is a common convention.
 
-* `specification_version` : String, the current specification version. (0.1.0) at this time.
+* `specification_version` (String) the current specification version. (0.1.0) at this time.
 
-* `source` : Table, contains information on how to fetch sources.
-  * `url` (string, mandatory field) : the URL of the package source archive. Examples: "http://github.com/downloads/keplerproject/wsapi/wsapi-1.3.4.tar.gz", "git://github.com/keplerproject/wsapi.git". Different protocols are supported: 
+* `source` (String) The URL of the package source archive. Examples: "http://github.com/downloads/keplerproject/wsapi/wsapi-1.3.4.tar.gz", "git://github.com/keplerproject/wsapi.git". Different protocols are supported: 
 
-    * file:// - for URLs in the local filesystem (note that for Unix paths, the root slash is the third slash, resulting in paths like "file:///full/path/filename"
-    * git:// - for the Git source control manager 
-    * git+https:// - for the Git source control manager when using repositories that need https:// URLs
-    * git+ssh:// - for the Git source control manager when using repositories that need SSH login, such as git@example.com/myrepo 
-    * http:// - for HTTP URLs
-    * https:// - for HTTPS URLs
+    * `file://` - for URLs in the local filesystem (note that for Unix paths, the root slash is the third slash, resulting in paths like "file:///full/path/filename"
+    * `git://` - for the Git source control manager 
+    * `git+https://` - for the Git source control manager when using repositories that need https:// URLs
+    * `git+ssh://` - for the Git source control manager when using repositories that need SSH login, such as git@example.com/myrepo 
+    * `http://` - for HTTP URLs
+    * `https://` - for HTTPS URLs
 
-* `description` : Table, the description is a table that includes the following nested fields:
-	* `summary` : String, a short description of the package, typically less than 100 character long.
-	* `detailed` : String, a long-form description of the package, this should convey the package's principal functionality to the user without being as detailed as the package readme.
-	* `homepage` : This is the homepage of the package, which in most cases will be the GitHub URL.
-	* `license` : This is [SPDX](https://spdx.org/licenses/) license identifier. Dual licensing is indicated via joining the relevant licenses via `/`.
+  If a string, the `source` can directly contain the `url` string.
 
-* `dependencies`
-  * `version` Taken from rockspec. Accepted operators are the relational operators of Lua: == \~= < > <= >= , as well as a special operator, \~>, inspired by the "pessimistic operator" of RubyGems ("\~> 2" means ">= 2, < 3"; "~> 2.4" means ">= 2.4, < 2.5"). No operator means an implicit == (i.e., "lfs 1.0" is the same as "lfs == 1.0"). "lua" is an special dependency name; it matches not a rock, but the version of Lua in use. Multiple version constraints can be joined with a `comma`, e.g. `"neovim >= 5.0, < 7.0"`.
-  * `source`: The source of the dependency. See previous `source` description.
+* `description` (Table) the description is a table that includes the following nested fields:
+	* `summary` (String) a short description of the package, typically less than 100 character long.
+	* `detailed` (String) a long-form description of the package, this should convey the package's principal functionality to the user without being as detailed as the package readme.
+	* `homepage` (String) This is the homepage of the package, which in most cases will be the GitHub URL.
+	* `license` (String) This is [SPDX](https://spdx.org/licenses/) license identifier. Dual licensing is indicated via joining the relevant licenses via `/`.
 
-* `external_dependencies` : Like dependencies, this specifies packages which are required for the package but should *not* be managed by the neovim package manager, such as `gcc` or `cmake`
-  * `version` same as `dependencies`
+* `dependencies` (List[Table]) A list of tables describing the package dependencies. Each entry in the table has the following, only `source` is mandatory:
+  * `version` (String) The version constraints on the package.
+    * Accepted operators are the relational operators of Lua: == \~= < > <= >= , as well as a special operator, \~>, inspired by the "pessimistic operator" of RubyGems ("\~> 2" means ">= 2, < 3"; "~> 2.4" means ">= 2.4, < 2.5"). No operator means an implicit == (i.e., "lfs 1.0" is the same as "lfs == 1.0"). "lua" is an special dependency name; it matches not a rock, but the version of Lua in use. Multiple version constraints can be joined with a `comma`, e.g. `"neovim >= 5.0, < 7.0"`.
+    * If no version is specified, then HEAD is assumed valid. 
+    * If no upper bound is specified, then any commit after the tag corresponding to the lower bound is assumed valid. The commit chosen is up to the plugin manager's discretion, but implementers are strongly encouraged to always use the latest valid commit.
+    * If an upper bound is specified, then the the tag corresponding to that upper bound is the latest commit that is valid
+
+  * `source` (String|Table) The source of the dependency. See previous `source` description.
+  * `releases_only` (Boolean) Whether the package manager should only resolve version constraints to include tagged releases.
+
+
+* `external_dependencies` (Table) Like dependencies, this specifies packages which are required for the package but should *not* be managed by the neovim package manager, such as `gcc` or `cmake`. Package managers are encouraged to provide a notification to the user if the dependency is not available.
+  * `version` (String) same as `dependencies`
 
 # Example
 
