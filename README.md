@@ -1,19 +1,20 @@
 # The Neovim package specification 
 
-The neovim package specification consists of two components. 
-* Guidelines which provide guidance to package authors, and 
-* the `packspec` file format
+The neovim package specification consists of three components:
+1. Guidelines which provide guidance to package authors,
+2. the `packspec` file format, and
+3. guidelines for `packspec`-compatible plugin manager implementers
 
-This specification is an effort to improve the consistency and reliability of neovim packages.
+This specification is an effort to improve the consistency and reliability of Neovim packages.
 
-# Guidelines for plugin authors.
+# Guidelines for plugin authors
 
 ### Semantic versioning
 
 All Neovim packages should be [semantically versioned](https://semver.org/). While other versioning schema have uses, semver allows for plugin managers to provide smart dependency resolution.
 
 # The `packspec` file
-The neovim package specification supports a single, top-level package metadata file. This file can be *either* 'packspec.lua' or 'packspec.json'. The format is loosely based on the [Rockspec Format](https://github.com/luarocks/luarocks/wiki/Rockspec-format) and can contain the following fields:
+The Neovim package specification supports a single, top-level package metadata file. This file can be *either* 'packspec.lua' or 'packspec.json'. The format is loosely based on the [Rockspec Format](https://github.com/luarocks/luarocks/wiki/Rockspec-format) and can contain the following fields:
 
 * `package` (String) the name of the package
 
@@ -112,3 +113,25 @@ And in json format
   }
 }
 ```
+
+# Guidelines for `packspec` implementers
+
+The minimum supported feature set to be considered `packspec`-compatible is:
+
+## Managing package versions
+- Must be able to fetch and parse `packspec.json` files
+- Must be able to use `git` to retrieve and manipulate package sources
+- Must be able to fetch tagged commits for specified package versions
+- Must be able to check for updated `packspec.json` files
+
+## Managing Neovim dependencies
+
+- Must be able to check the current version of `Neovim` and warn on incompatibility
+- Must be able to retrieve and manage the specified versions of dependencies transitively, starting from user-specified packages
+- Must either be able to solve for compatible versions of dependency packages across all dependency relationships, or warn users if using a potentially inconsistent version resolution strategy (e.g. picking the first specified version of a dependency).
+- Must be able to remove dependencies when they are no longer required (transitively) by any user-specified packages
+
+## Managing external dependencies
+
+- Must be able to check for the existence of a corresponding executable on the user's system
+- Version checking is optional
