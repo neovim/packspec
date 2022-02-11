@@ -44,7 +44,7 @@ The Neovim package specification supports a single, top-level package metadata f
     * If no upper bound is specified, then any commit after the tag corresponding to the lower bound is assumed valid. The commit chosen is up to the plugin manager's discretion, but implementers are strongly encouraged to always use the latest valid commit.
     * If an upper bound is specified, then the the tag corresponding to that upper bound is the latest commit that is valid
 
-  * `source` (String|Table) The source of the dependency. See previous `source` description.
+  * `source` (String) The source of the dependency. See previous `source` description.
   * `releases_only` (Boolean) Whether the package manager should only resolve version constraints to include tagged releases.
 
 
