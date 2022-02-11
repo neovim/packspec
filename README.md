@@ -1,12 +1,25 @@
-# Plugin metadata specification
+# The Neovim package specification 
 
-The neovim package specification supports a single, top-level package metadata file. This file can be *either* 'plugin.lua' or 'plugin.json'. The format is loosely based on the [Rockspec Format](https://github.com/luarocks/luarocks/wiki/Rockspec-format) and can contain the following fields:
+The neovim package specification consists of two components. 
+* Guidelines which provide guidance to package authors, and 
+* the `packspec` file format
+
+This specification is an effort to improve the consistency and reliability of neovim packages.
+
+# Guidelines for plugin authors.
+
+### Semantic versioning
+
+All Neovim packages should be [semantically versioned](https://semver.org/). While other versioning schema have uses, semver allows for plugin managers to provide smart dependency resolution.
+
+# The `packspec` file
+The neovim package specification supports a single, top-level package metadata file. This file can be *either* 'packspec.lua' or 'packspec.json'. The format is loosely based on the [Rockspec Format](https://github.com/luarocks/luarocks/wiki/Rockspec-format) and can contain the following fields:
 
 * `package` (String) the name of the package
 
 * `version` (String) the version of the package. Should obey semantic versioning conventions, for example `0.1.0`. Plugins should have a git commit with a `tag` matching this version. For all version identifiers, implementation should check for a `version` prefixed with `v` in the git repository, as this is a common convention.
 
-* `specification_version` (String) the current specification version. (0.1.0) at this time.
+* `packspec` (String) the current specification version. (0.1.0) at this time.
 
 * `source` (String) The URL of the package source archive. Examples: "http://github.com/downloads/keplerproject/wsapi/wsapi-1.3.4.tar.gz", "git://github.com/keplerproject/wsapi.git". Different protocols are supported: 
 
