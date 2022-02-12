@@ -1,4 +1,4 @@
-local pat_version = [[([0-9]|[1-9][0-9]*)(\.([0-9]|[1-9][0-9]*))*]]
+local pat_version = [[(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))*]]
 local pat_range = [[((==|~=|<|>|<=|>=|~>)\s*)?]]..pat_version
 
 local PAT_VERSION = "^"..pat_version.."$"
