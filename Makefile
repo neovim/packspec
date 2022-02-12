@@ -13,14 +13,16 @@ export LUA_PATH
 
 export LUA_CPATH = deps/lib/lua/$(LUA_VERSION)/?.so
 
-PCRE_DIR =
+ifdef PCRE_DIR
+LREXLIB_PCRE_FLAGS = PCRE_DIR=$(PCRE_DIR)
+endif
 # Example for MacOS installed via Homebrew:
 # PCRE_DIR = /opt/homebrew/Cellar/pcre/8.45
 
 LUAROCKS = luarocks --lua-version=$(LUA_VERSION) --tree=deps
 
 deps:
-	$(LUAROCKS) install lrexlib-pcre PCRE_DIR=$(PCRE_DIR)
+	$(LUAROCKS) install lrexlib-pcre $(LREXLIB_PCRE_FLAGS)
 	$(LUAROCKS) install inspect
 	$(LUAROCKS) install net-url
 	$(LUAROCKS) install jsonschema
@@ -32,5 +34,3 @@ test: deps
 .PHONY: clean
 clean:
 	$(RM) -rf deps
-
-
