@@ -1,3 +1,10 @@
+local pat_version = [[([0-9]|[1-9][0-9]*)(\.([0-9]|[1-9][0-9]*))*]]
+local pat_range = [[((==|~=|<|>|<=|>=|~>)\s*)?]]..pat_version
+
+local PAT_VERSION = "^"..pat_version.."$"
+local PAT_RANGE = "^"..pat_range..[[(\s*,\s*]]..pat_range..[[)*$]]
+local PAT_URL = [[^(file|git(\+(https?|ssh))?|https?)://]]
+
 return {
   title = "PlugSpec",
   description = "A PlugSpec for a Neovim plugin",
@@ -16,13 +23,13 @@ return {
         implementation should check for a `version` prefixed with `v` in the
         git repository, as this is a common convention.
       ]],
-      -- TODO: specify format
       type = "string",
+      pattern = PAT_VERSION,
     },
     packspec = {
       description = "The current specification version. (0.1.0) at this time.",
-      -- TODO: specify format
-      type = "string"
+      type = "string",
+      pattern = PAT_VERSION,
     },
     source = {
       description = [[
@@ -43,6 +50,7 @@ return {
           * `https://` - for HTTPS URLs
       ]],
       type = "string",
+      pattern = PAT_URL,
     },
     description = {
       description = "Description of the package",
@@ -108,14 +116,15 @@ return {
                     corresponding to that upper bound is the latest commit that
                     is valid
               ]],
-              -- TODO: specify format
-              type = 'string'
+              type = 'string',
+              pattern = PAT_RANGE,
             },
             source = {
               description = [[
                 Source of the dependency. See previous `source` description.
               ]],
-              type = 'string'
+              type = 'string',
+              pattern = PAT_URL,
             },
             releases_only = {
               description = [[
@@ -143,7 +152,8 @@ return {
           properties = {
             version = {
               description = "Same as `dependencies`",
-              type = 'string'
+              type = 'string',
+              pattern = PAT_RANGE,
             }
           }
         }
