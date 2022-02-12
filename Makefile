@@ -22,6 +22,7 @@ endif
 LUAROCKS = luarocks --lua-version=$(LUA_VERSION) --tree=deps
 
 deps:
+	$(LUAROCKS) install busted
 	$(LUAROCKS) install lrexlib-pcre $(LREXLIB_PCRE_FLAGS)
 	$(LUAROCKS) install inspect
 	$(LUAROCKS) install net-url
@@ -30,6 +31,7 @@ deps:
 .PHONY: test
 test: deps
 	./scripts/packspec.lua examples/packspec.1.lua
+	./deps/bin/busted
 
 .PHONY: clean
 clean:
