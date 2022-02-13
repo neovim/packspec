@@ -116,7 +116,7 @@ And in json format
 
 # Guidelines for `packspec` implementers
 
-The minimum supported feature set to be considered `packspec`-compatible is:
+The main features that must be implemented to be considered `packspec`-compatible are:
 
 ## Managing package versions
 - Must be able to fetch and parse `packspec.json` files
@@ -129,9 +129,9 @@ The minimum supported feature set to be considered `packspec`-compatible is:
 - Must be able to check the current version of `Neovim` and warn on incompatibility
 - Must be able to retrieve and manage the specified versions of dependencies transitively, starting from user-specified packages
 - Must either be able to solve for compatible versions of dependency packages across all dependency relationships, or warn users if using a potentially inconsistent version resolution strategy (e.g. picking the first specified version of a dependency).
-- Must be able to remove dependencies when they are no longer required (transitively) by any user-specified packages
+- [optional] remove dependencies when they are no longer required (transitively) by any user-specified packages
 
 ## Managing external dependencies
 
 - Must be able to check for the existence of a corresponding executable on the user's system
-- Version checking is optional
+- [optional] check the version constraints and warn the user if the external dependency are incompatible
