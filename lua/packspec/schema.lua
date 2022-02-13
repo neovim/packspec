@@ -1,6 +1,6 @@
 return {
-  title = "PlugSpec",
-  description = "A PlugSpec for a Neovim plugin",
+  title = "packspec",
+  description = "A package specification for Neovim",
   type = 'object',
   additionalProperties = false,
   properties = {
@@ -22,6 +22,10 @@ return {
     packspec = {
       description = "The current specification version. (0.1.0) at this time.",
       -- TODO: specify format
+      type = "string"
+    },
+    ["$schema"] = {
+      description = "The optional json schema URI for validation with json-language-server.",
       type = "string"
     },
     source = {
