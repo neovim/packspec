@@ -30,8 +30,9 @@ deps:
 	$(LUAROCKS) install lua-cjson
 
 .PHONY: test
-test: deps
+test: deps json
 	./scripts/packspec.lua examples/packspec.1.lua
+	./scripts/packspec.lua examples/packspec.1.json
 	./deps/bin/busted
 
 .PHONY: json
