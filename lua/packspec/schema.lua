@@ -6,8 +6,8 @@ local PAT_RANGE = "^"..pat_range..[[(\s*,\s*]]..pat_range..[[)*$]]
 local PAT_URL = [[^(file|git(\+(https?|ssh))?|https?)://]]
 
 return {
-  title = "PlugSpec",
-  description = "A PlugSpec for a Neovim plugin",
+  title = "packspec",
+  description = "A package specification for Neovim",
   type = 'object',
   additionalProperties = false,
   properties = {
@@ -30,6 +30,10 @@ return {
       description = "The current specification version. (0.1.0) at this time.",
       type = "string",
       pattern = PAT_VERSION,
+    },
+    ["$schema"] = {
+      description = "The optional json schema URI for validation with json-language-server.",
+      type = "string"
     },
     source = {
       description = [[

@@ -27,11 +27,16 @@ deps:
 	$(LUAROCKS) install inspect
 	$(LUAROCKS) install net-url
 	$(LUAROCKS) install jsonschema
+	$(LUAROCKS) install lua-cjson
 
 .PHONY: test
 test: deps
 	./scripts/packspec.lua examples/packspec.1.lua
 	./deps/bin/busted
+
+.PHONY: json
+json: deps
+	./scripts/generate_json_schema.lua
 
 .PHONY: clean
 clean:
