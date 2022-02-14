@@ -18,17 +18,17 @@
           "additionalProperties": false,
           "properties": {
             "releases_only": {
-              "description": "                Whether the package manager should only resolve version\n                constraints to include tagged releases.\n              ",
+              "description": "Whether the package manager should only resolve version\nconstraints to include tagged releases.",
               "type": "boolean"
             },
             "version": {
               "type": "string",
-              "description": "                Version constraints on the package.\n                  * Accepted operators are the relational operators of Lua:\n                    == \\~= < > <= >= , as well as a special operator, \\~>,\n                    inspired by the \"pessimistic operator\" of RubyGems\n                    (\"\\~> 2\" means \">= 2, < 3\"; \"~> 2.4\" means \">= 2.4, < 2.5\").\n                    No operator means an implicit == (i.e., \"lfs 1.0\" is the\n                    same as \"lfs == 1.0\"). \"lua\" is an special dependency name;\n                    it matches not a rock, but the version of Lua in use.\n                    Multiple version constraints can be joined with a `comma`,\n                    e.g. `\"neovim >= 5.0, < 7.0\"`.\n                  * If no version is specified, then HEAD is assumed valid.\n                  * If no upper bound is specified, then any commit after the\n                    tag corresponding to the lower bound is assumed valid. The\n                    commit chosen is up to the plugin manager's discretion, but\n                    implementers are strongly encouraged to always use the\n                    latest valid commit.\n                  * If an upper bound is specified, then the the tag\n                    corresponding to that upper bound is the latest commit that\n                    is valid\n              ",
+              "description": "Version constraints on the package.\n  * Accepted operators are the relational operators of Lua:\n    == \\~= < > <= >= , as well as a special operator, \\~>,\n    inspired by the \"pessimistic operator\" of RubyGems\n    (\"\\~> 2\" means \">= 2, < 3\"; \"~> 2.4\" means \">= 2.4, < 2.5\").\n    No operator means an implicit == (i.e., \"lfs 1.0\" is the\n    same as \"lfs == 1.0\"). \"lua\" is an special dependency name;\n    it matches not a rock, but the version of Lua in use.\n    Multiple version constraints can be joined with a `comma`,\n    e.g. `\"neovim >= 5.0, < 7.0\"`.\n  * If no version is specified, then HEAD is assumed valid.\n  * If no upper bound is specified, then any commit after the\n    tag corresponding to the lower bound is assumed valid. The\n    commit chosen is up to the plugin manager's discretion, but\n    implementers are strongly encouraged to always use the\n    latest valid commit.\n  * If an upper bound is specified, then the the tag\n    corresponding to that upper bound is the latest commit that\n    is valid",
               "pattern": "^((==|~=|<|>|<=|>=|~>)\\s*)?(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*(\\s*,\\s*((==|~=|<|>|<=|>=|~>)\\s*)?(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*)*$"
             },
             "source": {
               "type": "string",
-              "description": "                Source of the dependency. See previous `source` description.\n              ",
+              "description": "Source of the dependency. See previous `source` description.",
               "pattern": "^(file|git(\\+(https?|ssh))?|https?):\/\/"
             }
           }
@@ -37,11 +37,11 @@
     },
     "version": {
       "type": "string",
-      "description": "        The version of the package. Should obey semantic versioning\n        conventions, for example `0.1.0`. Plugins should have a git commit\n        with a `tag` matching this version. For all version identifiers,\n        implementation should check for a `version` prefixed with `v` in the\n        git repository, as this is a common convention.\n      ",
+      "description": "The version of the package. Should obey semantic versioning\nconventions, for example `0.1.0`. Plugins should have a git commit\nwith a `tag` matching this version. For all version identifiers,\nimplementation should check for a `version` prefixed with `v` in the\ngit repository, as this is a common convention.",
       "pattern": "^(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*$"
     },
     "external_dependencies": {
-      "description": "        Like dependencies, this specifies packages which are required for the\n        package but should *not* be managed by the Neovim package manager, such\n        as `gcc` or `cmake`. Package managers are encouraged to provide a\n        notification to the user if the dependency is not available.\n      ",
+      "description": "Like dependencies, this specifies packages which are required for the\npackage but should *not* be managed by the Neovim package manager, such\nas `gcc` or `cmake`. Package managers are encouraged to provide a\nnotification to the user if the dependency is not available.",
       "patternProperties": {
         ".*": {
           "type": "object",
@@ -63,19 +63,19 @@
     "description": {
       "properties": {
         "homepage": {
-          "description": "            Homepage of the package. In most cases this will be the GitHub URL.\n          ",
+          "description": "Homepage of the package. In most cases this will be the GitHub URL.",
           "type": "string"
         },
         "license": {
-          "description": "            This is [SPDX](https:\/\/spdx.org\/licenses\/) license identifier. Dual\n            licensing is indicated via joining the relevant licenses via `\/`.\n          ",
+          "description": "This is [SPDX](https:\/\/spdx.org\/licenses\/) license identifier. Dual\nlicensing is indicated via joining the relevant licenses via `\/`.",
           "type": "string"
         },
         "summary": {
-          "description": "            Short description of the package, typically less than 100 character\n            long.\n          ",
+          "description": "Short description of the package, typically less than 100 character\nlong.",
           "type": "string"
         },
         "detailed": {
-          "description": "            Long-form description of the package, this should convey the\n            package's principal functionality to the user without being as\n            detailed as the package readme.\n          ",
+          "description": "Long-form description of the package, this should convey the\npackage's principal functionality to the user without being as\ndetailed as the package readme.",
           "type": "string"
         }
       },
@@ -85,7 +85,7 @@
     },
     "source": {
       "type": "string",
-      "description": "      The URL of the package source archive. Examples:\n      \"http:\/\/github.com\/downloads\/keplerproject\/wsapi\/wsapi-1.3.4.tar.gz\",\n      \"git:\/\/github.com\/keplerproject\/wsapi.git\". Different protocols are\n      supported:\n\n          * `file:\/\/` - for URLs in the local filesystem (note that for Unix\n            paths, the root slash is the third slash, resulting in paths like\n            \"file:\/\/\/full\/path\/filename\"\n          * `git:\/\/` - for the Git source control manager\n          * `git+https:\/\/` - for the Git source control manager when using\n            repositories that need https:\/\/ URLs.\n          * `git+ssh:\/\/` - for the Git source control manager when using\n            repositories that need SSH login, such as git@example.com\/myrepo.\n          * `http:\/\/` - for HTTP URLs\n          * `https:\/\/` - for HTTPS URLs\n      ",
+      "description": "The URL of the package source archive. Examples:\n\"http:\/\/github.com\/downloads\/keplerproject\/wsapi\/wsapi-1.3.4.tar.gz\",\n\"git:\/\/github.com\/keplerproject\/wsapi.git\". Different protocols are\nsupported:\n    * `file:\/\/` - for URLs in the local filesystem (note that for Unix\n      paths, the root slash is the third slash, resulting in paths like\n      \"file:\/\/\/full\/path\/filename\"\n    * `git:\/\/` - for the Git source control manager\n    * `git+https:\/\/` - for the Git source control manager when using\n      repositories that need https:\/\/ URLs.\n    * `git+ssh:\/\/` - for the Git source control manager when using\n      repositories that need SSH login, such as git@example.com\/myrepo.\n    * `http:\/\/` - for HTTP URLs\n    * `https:\/\/` - for HTTPS URLs",
       "pattern": "^(file|git(\\+(https?|ssh))?|https?):\/\/"
     },
     "$schema": {
