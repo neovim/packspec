@@ -19,8 +19,10 @@ local function dedent(s)
       end
     else
       if line:match("^%s*$") then
-        -- replace empty lines with empty string
-        table.insert(lines, "")
+        -- replace empty lines with a single newline character.
+        -- empty lines are handled separately to allow the
+        -- closing "]]" to be one indentation level lower.
+        table.insert(lines, "\n")
       else
         -- strip indentation on non-empty lines
         line = assert(line:match(indent), "inconsistent indentation")
