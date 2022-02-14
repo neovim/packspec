@@ -5,6 +5,35 @@ local PAT_VERSION = "^"..pat_version.."$"
 local PAT_RANGE = "^"..pat_range..[[(\s*,\s*]]..pat_range..[[)*$]]
 local PAT_URL = [[^(file|git(\+(https?|ssh))?|https?)://]]
 
+local function dedent(s)
+  local lines = {}
+  local indent = nil
+
+  for line in s:gmatch("[^\n]*\n?") do
+    if indent == nil then
+      if not line:match("^%s*$") then
+        -- save pattern for indentation from the first non-empty line
+        indent, line = line:match("^(%s*)(.*)$")
+        indent = "^"..indent.."(.*)$"
+        table.insert(lines, line)
+      end
+    else
+      if line:match("^%s*$") then
+        -- replace empty lines with empty string
+        table.insert(lines, "")
+      else
+        -- strip indentation on non-empty lines
+        line = assert(line:match(indent), "inconsistent indentation")
+        table.insert(lines, line)
+      end
+    end
+  end
+
+  lines = table.concat(lines)
+  -- trim trailing whitespace
+  return lines:match("^(.-)%s*$")
+end
+
 return {
   title = "packspec",
   description = "A package specification for Neovim",
@@ -16,7 +45,7 @@ return {
       type = "string",
     },
     version = {
-      description = [[
+      description = dedent [[
         The version of the package. Should obey semantic versioning
         conventions, for example `0.1.0`. Plugins should have a git commit
         with a `tag` matching this version. For all version identifiers,
@@ -36,7 +65,7 @@ return {
       type = "string"
     },
     source = {
-      description = [[
+      description = dedent [[
       The URL of the package source archive. Examples:
       "http://github.com/downloads/keplerproject/wsapi/wsapi-1.3.4.tar.gz",
       "git://github.com/keplerproject/wsapi.git". Different protocols are
@@ -62,14 +91,14 @@ return {
       additionalProperties = false,
       properties = {
         summary  = {
-          description = [[
+          description = dedent [[
             Short description of the package, typically less than 100 character
             long.
           ]],
           type = "string"
         },
         detailed = {
-          description = [[
+          description = dedent [[
             Long-form description of the package, this should convey the
             package's principal functionality to the user without being as
             detailed as the package readme.
@@ -77,13 +106,13 @@ return {
           type = "string"
         },
         homepage = {
-          description = [[
+          description = dedent [[
             Homepage of the package. In most cases this will be the GitHub URL.
           ]],
           type = "string"
         },
         license = {
-          description = [[
+          description = dedent [[
             This is [SPDX](https://spdx.org/licenses/) license identifier. Dual
             licensing is indicated via joining the relevant licenses via `/`.
           ]],
@@ -99,7 +128,7 @@ return {
           additionalProperties = false,
           properties = {
             version = {
-              description = [[
+              description = dedent [[
                 Version constraints on the package.
                   * Accepted operators are the relational operators of Lua:
                     == \~= < > <= >= , as well as a special operator, \~>,
@@ -124,14 +153,14 @@ return {
               pattern = PAT_RANGE,
             },
             source = {
-              description = [[
+              description = dedent [[
                 Source of the dependency. See previous `source` description.
               ]],
               type = 'string',
               pattern = PAT_URL,
             },
             releases_only = {
-              description = [[
+              description = dedent [[
                 Whether the package manager should only resolve version
                 constraints to include tagged releases.
               ]],
@@ -143,7 +172,7 @@ return {
     },
 
     external_dependencies = {
-      description = [[
+      description = dedent [[
         Like dependencies, this specifies packages which are required for the
         package but should *not* be managed by the Neovim package manager, such
         as `gcc` or `cmake`. Package managers are encouraged to provide a
