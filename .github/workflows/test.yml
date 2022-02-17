@@ -1,0 +1,12 @@
+name: "Test"
+on:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y lua-busted lua-system lua-term lua5.1 luarocks
+      - run: make test
