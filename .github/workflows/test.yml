@@ -8,5 +8,5 @@ jobs:
       - uses: actions/checkout@v2
       - run: |
           sudo apt-get update
-          sudo apt-get install -y lua-busted lua-system lua-term lua5.1 luarocks
+          sudo apt-get install -y luarocks
       - run: make test
