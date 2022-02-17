@@ -7,7 +7,10 @@
 # This will configure luarocks using 5.1 to use luajit-openresty.
 LUA_VERSION=5.1
 
-export LUA_PATH = deps/share/lua/$(LUA_VERSION)/?.lua;deps/share/lua/$(LUA_VERSION)/?/init.lua;lua/?.lua;lua/?/init.lua;$(shell lua$(LUA_VERSION) -e 'print(package.path)')
+LUA_PATH = deps/share/lua/$(LUA_VERSION)/?.lua;deps/share/lua/$(LUA_VERSION)/?/init.lua
+LUA_PATH = $(LUA_PATH);lua/?.lua;lua/?/init.lua
+LUA_PATH = $(LUA_PATH);$(shell lua$(LUA_VERSION) -e 'print(package.path)')
+export LUA_PATH
 
 export LUA_CPATH = deps/lib/lua/$(LUA_VERSION)/?.so;$(shell lua$(LUA_VERSION) -e 'print(package.cpath)')
 
