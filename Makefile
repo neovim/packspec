@@ -8,10 +8,11 @@
 LUA_VERSION=5.1
 
 LUA_PATH = deps/share/lua/$(LUA_VERSION)/?.lua;deps/share/lua/$(LUA_VERSION)/?/init.lua
-LUA_PATH += ;lua/?.lua;lua/?/init.lua
+LUA_PATH := $(LUA_PATH);lua/?.lua;lua/?/init.lua
+LUA_PATH := $(LUA_PATH);$(shell lua$(LUA_VERSION) -e 'print(package.path)')
 export LUA_PATH
 
-export LUA_CPATH = deps/lib/lua/$(LUA_VERSION)/?.so
+export LUA_CPATH = deps/lib/lua/$(LUA_VERSION)/?.so;$(shell lua$(LUA_VERSION) -e 'print(package.cpath)')
 
 ifdef PCRE_DIR
 LREXLIB_PCRE_FLAGS = PCRE_DIR=$(PCRE_DIR)
