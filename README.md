@@ -30,6 +30,7 @@ The Neovim package specification supports a single, top-level package metadata f
     * `git+ssh://` - for the Git source control manager when using repositories that need SSH login, such as git@example.com/myrepo 
     * `http://` - for HTTP URLs
     * `https://` - for HTTPS URLs
+    * `luarocks://` - for Luarocks packages
 
 * `description` (Table) the description is a table that includes the following nested fields:
 	* `summary` (String) a short description of the package, typically less than 100 character long.
