@@ -29,7 +29,7 @@
             "source": {
               "type": "string",
               "description": "Source of the dependency. See previous `source` description.",
-              "pattern": "^(file|git(\\+(https?|ssh))?|https?):\/\/"
+              "pattern": "^\\w+:\/\/"
             }
           }
         }
@@ -84,9 +84,13 @@
       "additionalProperties": false
     },
     "source": {
+      "pattern": "^\\w+:\/\/",
       "type": "string",
-      "description": "The URL of the package source archive. Examples:\n\"http:\/\/github.com\/downloads\/keplerproject\/wsapi\/wsapi-1.3.4.tar.gz\",\n\"git:\/\/github.com\/keplerproject\/wsapi.git\". Different protocols are\nsupported:\n\n    * `file:\/\/` - for URLs in the local filesystem (note that for Unix\n      paths, the root slash is the third slash, resulting in paths like\n      \"file:\/\/\/full\/path\/filename\"\n    * `git:\/\/` - for the Git source control manager\n    * `git+https:\/\/` - for the Git source control manager when using\n      repositories that need https:\/\/ URLs.\n    * `git+ssh:\/\/` - for the Git source control manager when using\n      repositories that need SSH login, such as git@example.com\/myrepo.\n    * `http:\/\/` - for HTTP URLs\n    * `https:\/\/` - for HTTPS URLs",
-      "pattern": "^(file|git(\\+(https?|ssh))?|https?):\/\/"
+      "description": "The URL of the package source archive. Examples:\n\"http:\/\/github.com\/downloads\/keplerproject\/wsapi\/wsapi-1.3.4.tar.gz\",\n\"git:\/\/github.com\/keplerproject\/wsapi.git\". Different protocols are\nsupported:\n\n    * `luarocks:\/\/` - for luarocks packages\n    * `file:\/\/` - for URLs in the local filesystem (note that for Unix\n      paths, the root slash is the third slash, resulting in paths like\n      \"file:\/\/\/full\/path\/filename\"\n    * `git:\/\/` - for the Git source control manager\n    * `git+https:\/\/` - for the Git source control manager when using\n      repositories that need https:\/\/ URLs.\n    * `git+ssh:\/\/` - for the Git source control manager when using\n      repositories that need SSH login, such as git@example.com\/myrepo.\n    * `http:\/\/` - for HTTP URLs\n    * `https:\/\/` - for HTTPS URLs",
+      "examples": [
+        "luarocks:\/\/argparse",
+        "git:\/\/github.com\/nvim-lua\/plenary.nvim"
+      ]
     },
     "$schema": {
       "description": "The optional json schema URI for validation with json-language-server.",

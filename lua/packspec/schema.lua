@@ -3,7 +3,7 @@ local pat_range = [[((==|~=|<|>|<=|>=|~>)\s*)?]]..pat_version
 
 local PAT_VERSION = "^"..pat_version.."$"
 local PAT_RANGE = "^"..pat_range..[[(\s*,\s*]]..pat_range..[[)*$]]
-local PAT_URL = [[^(file|git(\+(https?|ssh))?|https?)://]]
+local PAT_URL = [[^\w+://]]
 
 local function dedent(s)
   local lines = {}
@@ -73,6 +73,7 @@ return {
       "git://github.com/keplerproject/wsapi.git". Different protocols are
       supported:
 
+          * `luarocks://` - for luarocks packages
           * `file://` - for URLs in the local filesystem (note that for Unix
             paths, the root slash is the third slash, resulting in paths like
             "file:///full/path/filename"
@@ -84,6 +85,10 @@ return {
           * `http://` - for HTTP URLs
           * `https://` - for HTTPS URLs
       ]],
+      examples = {
+        "luarocks://argparse",
+        "git://github.com/nvim-lua/plenary.nvim"
+      },
       type = "string",
       pattern = PAT_URL,
     },
