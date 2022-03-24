@@ -62,16 +62,31 @@
     },
     "description": {
       "properties": {
+        "summary": {
+          "description": "Short description of the package, typically less than 100 character\nlong.",
+          "type": "string"
+        },
         "homepage": {
           "description": "Homepage of the package. In most cases this will be the GitHub URL.",
           "type": "string"
         },
+        "author": {
+          "properties": {
+            "name": {
+              "description": "Author name",
+              "type": "string"
+            },
+            "email": {
+              "description": "Author email",
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "description": "Author of the package",
+          "additionalProperties": false
+        },
         "license": {
           "description": "This is [SPDX](https:\/\/spdx.org\/licenses\/) license identifier. Dual\nlicensing is indicated via joining the relevant licenses via `\/`.",
-          "type": "string"
-        },
-        "summary": {
-          "description": "Short description of the package, typically less than 100 character\nlong.",
           "type": "string"
         },
         "detailed": {

@@ -112,6 +112,21 @@ return {
           ]],
           type = "string"
         },
+        author = {
+          description = "Author of the package",
+          type = 'object',
+          additionalProperties = false,
+          properties = {
+            name  = {
+              description = 'Author name',
+              type = "string"
+            },
+            email = {
+              description = 'Author email',
+              type = "string"
+            }
+          }
+        },
         homepage = {
           description = dedent [[
             Homepage of the package. In most cases this will be the GitHub URL.

@@ -9,6 +9,10 @@ description = {
   ]],
   homepage = "git://github.com/neovim/nvim-lspconfig/",
   license = "Apache-2.0",
+  author = {
+    name = "Neovim team",
+    email = "neovim@neovim.io",
+  }
 }
 dependencies = {
   neovim = {
