@@ -8,7 +8,11 @@
     "summary" : "Quickstart configurations for the Nvim-lsp client",
     "detailed" : "lspconfig is a set of configurations for language servers for use with Neovim's built-in language server client. Lspconfig handles configuring, launching, and attaching language servers",
     "homepage" : "https://github.com/neovim/nvim-lspconfig/", 
-    "license" : "Apache-2.0" 
+    "license" : "Apache-2.0",
+    "author": {
+      "name": "Neovim team",
+      "email": "neovim@neovim.io"
+    }
   },
   "dependencies" : {
     "neovim" : {
