@@ -1,0 +1,21 @@
+name: Update README
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'examples/**'
+
+jobs:
+  embed-code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Markdown autodocs
+        uses: dineshsonachalam/markdown-autodocs@v1.0.4
+        with:
+          commit_message: 'docs: update code examples'
+          # Optional output file paths, defaults to '[./README.md]'.
+          output_file_paths: '[./README.md]'
+          categories: '[code-block]'
