@@ -57,6 +57,7 @@ The Neovim package specification supports a single, top-level package metadata f
 
 # Example
 
+<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=/examples/packspec.1.lua) -->
 ```lua
 package = "lspconfig"
 version = "0.1.2"
@@ -86,8 +87,10 @@ external_dependencies = {
    },
 }
 ```
+<!-- MARKDOWN-AUTO-DOCS:END -->
 
 And in json format
+<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=/examples/packspec.1.json) -->
 ```json
 {
   "package" : "lspconfig",
@@ -117,6 +120,7 @@ And in json format
   }
 }
 ```
+<!-- MARKDOWN-AUTO-DOCS:END -->
 
 # Guidelines for `packspec` implementers
 
