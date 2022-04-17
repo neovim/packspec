@@ -20,7 +20,7 @@ The Neovim package specification supports a single, top-level package metadata f
 
 * `version` (String) the version of the package. Should obey semantic versioning conventions, for example `0.1.0`. Plugins should have a git commit with a `tag` matching this version. For all version identifiers, implementation should check for a `version` prefixed with `v` in the git repository, as this is a common convention.
 
-* `packspec` (String) the current specification version. (0.1.0) at this time.
+* `packspec_version` (String) the current specification version. (0.1.0) at this time.
 
 * `source` (String) The URL of the package source archive. Examples: "http://github.com/downloads/keplerproject/wsapi/wsapi-1.3.4.tar.gz", "git://github.com/keplerproject/wsapi.git". Different protocols are supported: 
 
@@ -57,7 +57,7 @@ The Neovim package specification supports a single, top-level package metadata f
 ```lua
 package = "lspconfig"
 version = "0.1.2"
-specification_version = "0.1.0"
+packspec_version = "0.1.0"
 source = "git://github.com/neovim/nvim-lspconfig.git",
 description = {
    summary = "Quickstart configurations for the Nvim-lsp client",
@@ -89,7 +89,7 @@ And in json format
 {
   "package" : "lspconfig",
   "version" : "0.1.2",
-  "specification_version" : "0.1.0",
+  "packspec_version" : "0.1.0",
   "source" : "git://github.com/neovim/nvim-lspconfig.git",
   "description" : {
     "summary" : "Quickstart configurations for the Nvim-lsp client",

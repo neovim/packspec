@@ -6,10 +6,43 @@
     "source"
   ],
   "properties": {
-    "packspec": {
-      "type": "string",
-      "description": "The current specification version. (0.1.0) at this time.",
-      "pattern": "^(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*$"
+    "description": {
+      "properties": {
+        "summary": {
+          "description": "Short description of the package, typically less than 100 character\nlong.",
+          "type": "string"
+        },
+        "homepage": {
+          "description": "Homepage of the package. In most cases this will be the GitHub URL.",
+          "type": "string"
+        },
+        "author": {
+          "properties": {
+            "name": {
+              "description": "Author name",
+              "type": "string"
+            },
+            "email": {
+              "description": "Author email",
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "description": "Author of the package",
+          "additionalProperties": false
+        },
+        "license": {
+          "description": "This is [SPDX](https:\/\/spdx.org\/licenses\/) license identifier. Dual\nlicensing is indicated via joining the relevant licenses via `\/`.",
+          "type": "string"
+        },
+        "detailed": {
+          "description": "Long-form description of the package, this should convey the\npackage's principal functionality to the user without being as\ndetailed as the package readme.",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "description": "Description of the package",
+      "additionalProperties": false
     },
     "dependencies": {
       "patternProperties": {
@@ -60,43 +93,10 @@
       "description": "The name of the package",
       "type": "string"
     },
-    "description": {
-      "properties": {
-        "summary": {
-          "description": "Short description of the package, typically less than 100 character\nlong.",
-          "type": "string"
-        },
-        "homepage": {
-          "description": "Homepage of the package. In most cases this will be the GitHub URL.",
-          "type": "string"
-        },
-        "author": {
-          "properties": {
-            "name": {
-              "description": "Author name",
-              "type": "string"
-            },
-            "email": {
-              "description": "Author email",
-              "type": "string"
-            }
-          },
-          "type": "object",
-          "description": "Author of the package",
-          "additionalProperties": false
-        },
-        "license": {
-          "description": "This is [SPDX](https:\/\/spdx.org\/licenses\/) license identifier. Dual\nlicensing is indicated via joining the relevant licenses via `\/`.",
-          "type": "string"
-        },
-        "detailed": {
-          "description": "Long-form description of the package, this should convey the\npackage's principal functionality to the user without being as\ndetailed as the package readme.",
-          "type": "string"
-        }
-      },
-      "type": "object",
-      "description": "Description of the package",
-      "additionalProperties": false
+    "packspec_version": {
+      "type": "string",
+      "description": "The current specification version. (0.1.0) at this time.",
+      "pattern": "^(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*$"
     },
     "source": {
       "pattern": "^\\w+:\/\/",

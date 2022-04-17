@@ -57,7 +57,7 @@ return {
       type = "string",
       pattern = PAT_VERSION,
     },
-    packspec = {
+    packspec_version = {
       description = "The current specification version. (0.1.0) at this time.",
       type = "string",
       pattern = PAT_VERSION,

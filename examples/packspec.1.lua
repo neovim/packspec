@@ -1,6 +1,6 @@
 package = "lspconfig"
 version = "0.1.2"
-packspec = "0.1.0"
+packspec_version = "0.1.0"
 source = "git://github.com/neovim/nvim-lspconfig.git"
 description = {
   summary = "Quickstart configurations for the Nvim-lsp client",
