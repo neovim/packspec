@@ -1,0 +1,19 @@
+{
+  "name": "lspconfig",
+  "randomClientDefinedField": "foo",
+  "description": "Quickstart configurations for the Nvim-lsp client",
+  "license": "Apache-2.0",
+  "readme": "readme content",
+  "engines": {
+      "nvim": "^0.10.0",
+      "vim": "^9.1.0"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/neovim/nvim-lspconfig"
+  },
+  "dependencies" : {
+    "https://github.com/neovim/neovim" : "0.6.1",
+    "https://github.com/lewis6991/gitsigns.nvim" : "0.3"
+  }
+}
