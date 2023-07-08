@@ -1,0 +1,14 @@
+{
+  "name": "packspec-npm-test",
+  "version": "1.0.0",
+  "description": "Test pkg.json against NPM's read-package-json library",
+  "main": "npm.test.js",
+  "scripts": {
+    "test": "node test.js "
+  },
+  "author": "packspec team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "read-package-json": "^6.0.4"
+  }
+}
