@@ -1,11 +1,51 @@
-# The Neovim package specification 
+# pkg.json
+
+- `pkg.json` is just a way to declare dependencies on URLs and versions
+- Decentralized ("federated", omg)
+- Subset of `package.json`
+- Upstream dependencies don't need a `pkg.json` file.
+- No client spec (yet)
+- No official client (yet)
+- TODO: support conflicting dependencies using git worktree.
+- Useful for: vim, nvim, emacs, (others?)
+- Used by:
+    - [lazy.nvim](https://github.com/folke/lazy.nvim/)
+    - TBD
+
+## Build
+
+    brew install luarocks
+    make
+    make test
+
+## Run tests
+
+    cd test-npm/
+    npm ci
+    npm run test
+
+## What about LuaRocks?
+
+LuaRocks is a natural as the Nvim plugin manager, but defining a ~~"plugin spec"~~ "federated package spec" also makes sense because:
+
+- There is no "federated" plugin spec (corrections welcome!). LuaRocks is a "centralized" approach.
+- LuaRocks + Nvim is starting to see real progress in the form of https://github.com/nvim-neorocks , but thus far has not gained momentum. A decentralized, lowest-common-denominator, "infectious" approach is high-leverage, while work continues on the centralized LuaRocks approach at its own pace.
+- There's no central _asset_ registry, just a bunch of URLs. 
+    - Could have a central _list_ of plugins, but not assets.
+- We can do both, at low cost. `pkg.json` is a fairly "cheap" approach. LuaRocks
+
+## Release
+
+TBD
+
+---
+
+# OLD
 
 The neovim package specification consists of three components:
 1. Guidelines which provide guidance to package authors,
 2. the `packspec` file format, and
 3. guidelines for `packspec`-compatible plugin manager implementers
-
-This specification is an effort to improve the consistency and reliability of Neovim packages.
 
 # Guidelines for plugin authors
 
