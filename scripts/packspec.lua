@@ -1,5 +1,3 @@
-#! /usr/bin/env lua5.1
-
 local function fatal(s, ...)
   print(string.format(s, ...))
   os.exit(1)

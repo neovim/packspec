@@ -32,13 +32,13 @@ deps:
 
 .PHONY: test
 test: deps json
-	./scripts/packspec.lua examples/packspec.1.lua
-	./scripts/packspec.lua examples/packspec.1.json
+	nvim -l ./scripts/packspec.lua examples/packspec.1.lua
+	nvim -l ./scripts/packspec.lua examples/packspec.1.json
 	./deps/bin/busted
 
 .PHONY: json
 json: deps
-	./scripts/generate_json_schema.lua
+	nvim -l ./scripts/generate_json_schema.lua
 
 .PHONY: clean
 clean:
