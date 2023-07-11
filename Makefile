@@ -28,7 +28,6 @@ deps:
 	$(LUAROCKS) install inspect
 	$(LUAROCKS) install net-url
 	$(LUAROCKS) install jsonschema
-	$(LUAROCKS) install lua-cjson
 
 .PHONY: test
 test: deps json
