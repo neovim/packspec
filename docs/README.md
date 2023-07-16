@@ -22,15 +22,18 @@ a formalized way to list dependencies by URL.
     - [lazy.nvim](https://github.com/folke/lazy.nvim/)
     - TBD
 
+# Package requirements
+
+The [package specification](./spec.md) specifies the structure of a package and the `pkg.json` format.
+
+- Dependency URLs are expected to be git repos.
+- TODO: support other kinds of artifacts, like zip archives or binaries.
+
 # Client requirements
 
 - `git` (packages can live at any git URL)
 - JSON parser
-
-# Package server requirements
-
-- Dependency URLs are expected to be git repos.
-- TODO: support other kinds of artifacts, like zip archives or binaries.
+- [client guidelines](./client-spec.md)
 
 # Design
 
@@ -47,5 +50,6 @@ a formalized way to list dependencies by URL.
 # References
 
 - https://json-schema.org/
+- https://github.com/luarocks/luarocks/wiki/Rockspec-format
 - lazy.nvim [pkg.json impl](https://github.com/folke/lazy.nvim/pull/910/files#diff-eeb8f2e48ace6e2f4c40bf159b7f59e5eb1208e056a3f9f1b9cc6822ecb45371)
 - [A way for artifacts to depend on other artifacts.](https://sink.io/jmk/artifact-system)
