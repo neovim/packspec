@@ -123,14 +123,3 @@ This may be relaxed in the future.
    .local/share/nvim/site/pack/github.com/start/
    .local/share/nvim/site/pack/sr.ht/start/
    ```
-
-
-# Strategy
-
-- [x] specify packspec (above)
-- [ ] specify ecosystem-agnostic client behavior (report conflicts, fetch things into `pack/` dir, update existing dir, ...)
-- [ ] specify what is undefined (i.e. owned by the per-ecosystem "engine", for example vim/nvim packages are fetched into 'packpath')
-
-# TODO (future)
-
-- nested packages in workspace (`foo/pkg.json`, `foo/bar/pkg.json`)

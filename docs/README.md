@@ -43,7 +43,6 @@ The initial use-case is for Vim and Emacs plugins (which can be downloaded from 
 
 - No client spec (yet): only the format is specified, not client behavior.
 - No official client (yet)
-- TODO: support conflicting dependencies using git worktree.
 
 # Package requirements
 

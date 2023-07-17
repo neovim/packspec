@@ -57,3 +57,12 @@ LuaRocks is a natural choice as the Nvim plugin manager, but defining a "federat
 ## Release
 
 TBD
+
+## TODO
+
+- [x] specify packspec (above)
+- [ ] specify ecosystem-agnostic client behavior (report conflicts, fetch things into `pack/` dir, update existing dir, ...)
+- [ ] specify what is undefined (i.e. owned by the per-ecosystem "engine", for example vim/nvim packages are fetched into 'packpath')
+- [ ] TODO: support other kinds of artifacts, like zip archives or binaries.
+- [ ] nested packages in workspace (`foo/pkg.json`, `foo/bar/pkg.json`)
+- [ ] Nvim: client can support conflicting dependencies by using git worktree.
