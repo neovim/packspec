@@ -5,7 +5,9 @@ It's a (very) limited subset of NPM's `package.json` that allows any project to 
 
 The initial use-case is for Vim and Emacs plugins (which can be downloaded from anywhere), but the format is designed to be generic.
 
-## Example
+See [/docs](https://github.com/neovim/packspec/tree/main/docs) for full documentation.
+
+## TL;DR
 
 ```
 {
@@ -25,20 +27,6 @@ The initial use-case is for Vim and Emacs plugins (which can be downloaded from 
   },
 }
 ```
-
-## Overview
-
-- `pkg.json` is just a way to declare dependencies on URLs and versions
-- Decentralized ("federated", omg)
-- Subset of `package.json`
-- Upstream dependencies don't need a `pkg.json` file.
-- No client spec (yet)
-- No official client (yet)
-- TODO: support conflicting dependencies using git worktree.
-- Useful for: vim, nvim, emacs, (others?)
-- Used by:
-    - [lazy.nvim](https://github.com/folke/lazy.nvim/)
-    - TBD
 
 ## Build
 
@@ -63,8 +51,8 @@ LuaRocks is a natural choice as the Nvim plugin manager, but defining a "federat
 - LuaRocks + Nvim is starting to see [progress](https://github.com/nvim-neorocks), but momentum will take time.
   A decentralized, lowest-common-denominator, "infectious" approach can be tried without losing much time or effort.
 - There's no central _asset registry_, just a bunch of URLs. (Though "aggregators" are possible and welcome.)
-- LuaRocks has 10x more scope than `pkg.json` and 100x more [unresolved edge cases](https://github.com/luarocks/luarocks/issues/905).
-  `pkg.json` side-steps all of that by punting the ecosystem-dependent questions to the ecosystem-dependent package manager client.
+- LuaRocks has 10x more scope than `pkg.json` and [unresolved edge cases](https://github.com/luarocks/luarocks/issues/905).
+  `pkg.json` side-steps that by punting the ecosystem-dependent questions to the client.
 
 ## Release
 

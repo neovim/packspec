@@ -1,12 +1,30 @@
 # pkg.json
 
-`pkg.json` allows artifacts to depend on other artifacts, by URLs.
-You can think of it as a "federated package spec": it's just a JSON file that
-lists URLs in a simple format that is dead simple to write a client for.
+`pkg.json` is a wild-west "package" format for defining packages without a package system.
+It's a (very) limited subset of NPM's `package.json` that allows any project to declare dependencies on arbitrary URLs.
 
-The initial use-case is for Vim and Emacs plugins (which can be downloaded from
-anywhere). But the format is designed to be ecosystem-agnostic: it's just
-a formalized way to list dependencies by URL.
+The initial use-case is for Vim and Emacs plugins (which can be downloaded from anywhere), but the format is designed to be generic.
+
+# TL;DR
+
+```
+{
+  "name" : "lspconfig", // OPTIONAL cosmetic name, not used for resolution nor filesystem locations.
+  "description" : "Quickstart configurations for the Nvim-lsp client", // OPTIONAL
+  "engines": {
+      "nvim": "^0.10.0",
+      "vim": "^9.1.0"
+  },
+  "repository": { // REQUIRED
+      "type": "git", // reserved for future use
+      "url": "https://github.com/neovim/nvim-lspconfig"
+  },
+  "dependencies" : { // OPTIONAL
+    "https://github.com/neovim/neovim" : "0.6.1",
+    "https://github.com/lewis6991/gitsigns.nvim" : "0.3"
+  },
+}
+```
 
 # Features
 
@@ -14,13 +32,18 @@ a formalized way to list dependencies by URL.
 - Decentralized ("federated", omg)
 - Subset of `package.json`
 - Upstream dependencies don't need a `pkg.json` file.
+- Gives aggregators a way to find plugins for their `engine`.
+
+# Used by:
+
+- [lazy.nvim](https://github.com/folke/lazy.nvim/)
+- TBD
+
+# Limitations
+
 - No client spec (yet): only the format is specified, not client behavior.
 - No official client (yet)
 - TODO: support conflicting dependencies using git worktree.
-- Useful for: vim, nvim, emacs, (others?)
-- Used by:
-    - [lazy.nvim](https://github.com/folke/lazy.nvim/)
-    - TBD
 
 # Package requirements
 
