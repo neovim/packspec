@@ -1,5 +1,7 @@
 # pkg.json
 
+> The JSON of package specs.
+
 `pkg.json` is a wild-west "package" format for defining packages without a package system.
 It's a (very) limited subset of NPM's `package.json` that allows any project to declare dependencies on arbitrary URLs.
 
