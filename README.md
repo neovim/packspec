@@ -9,7 +9,7 @@ The initial use-case is for Vim and Emacs plugins (which can be downloaded from 
 
 See [/docs](https://github.com/neovim/packspec/tree/main/docs) for full documentation.
 
-## TL;DR
+## tl;dr
 
 ```
 {
@@ -50,7 +50,7 @@ LuaRocks is a natural choice as the Nvim plugin manager, but defining a "federat
 - LuaRocks is a "centralized" approach that requires active participation from many plugins.
   In contrast, `pkg.json` is a decentralized, "infectious" approach that is useful at the "leaf nodes":
   it only requires the consumer to provide a `pkg.json`, the upstream dependencies don't need to be "compliant" or participate in any way.
-- LuaRocks + Nvim is starting to see [progress](https://github.com/nvim-neorocks), but momentum will take time.
+- LuaRocks + Nvim is starting to see [progress](https://github.com/lumen-oss), but momentum will take time.
   A decentralized, lowest-common-denominator, "infectious" approach can be tried without losing much time or effort.
 - There's no central _asset registry_, just a bunch of URLs. (Though "aggregators" are possible and welcome.)
 - LuaRocks has 10x more scope than `pkg.json` and [unresolved edge cases](https://github.com/luarocks/luarocks/issues/905).
