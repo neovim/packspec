@@ -26,8 +26,7 @@
 -- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 -- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-local ok, cjson = pcall(require, "cjson.safe")
-local enc = ok and cjson.encode or function() return nil, "Lua cJSON encoder not found" end
+local enc = vim.json.encode
 local cat = table.concat
 local sub = string.sub
 local rep = string.rep

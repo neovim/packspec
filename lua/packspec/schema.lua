@@ -38,12 +38,12 @@ end
 
 return {
   title = "packspec",
-  description = "A package specification for Neovim",
+  description = "Package format for declaring decentralized, ad-hoc dependencies",
   type = 'object',
   additionalProperties = false,
   properties = {
     package = {
-      description = "The name of the package",
+      description = "Name of the package (optional)",
       type = "string",
     },
     version = {
