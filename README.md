@@ -3,7 +3,7 @@
 > The JSON of package specs.
 
 `pkg.json` is a wild-west "package" format for defining packages without a package system.
-It's a (very) limited subset of NPM's `package.json` that allows any project to declare dependencies on arbitrary URLs.
+It's a (very) limited subset of NPM's `package.json` (except dependencies) that allows any project to declare dependencies on arbitrary URLs.
 
 The initial use-case is for Vim and Emacs plugins (which can be downloaded from anywhere), but the format is designed to be generic.
 
@@ -11,22 +11,34 @@ See [/docs](https://github.com/neovim/packspec/tree/main/docs) for full document
 
 ## tl;dr
 
-```
+```json
 {
-  "name" : "lspconfig", // OPTIONAL cosmetic name, not used for resolution nor filesystem locations.
-  "description" : "Quickstart configurations for the Nvim-lsp client", // OPTIONAL
+  "name": "best-plugin.nvim",
+  "description": "The best plugin for Neovim",
+  "version": "1.0.0",
   "engines": {
-      "nvim": "^0.10.0",
-      "vim": "^9.1.0"
+      "nvim": ">=0.13.0",
+      "vim": ">=9.1.0"
   },
-  "repository": { // REQUIRED
-      "type": "git", // reserved for future use
-      "url": "https://github.com/neovim/nvim-lspconfig"
+  "scripts": {
+    "install": "scripts/install.lua",
+    "preupdate": "scripts/preupdate.vim",
+    "update": "scripts/update.vim",
+    "preuninstall": "scripts/preuninstall.lua"
   },
-  "dependencies" : { // OPTIONAL
-    "https://github.com/neovim/neovim" : "0.6.1",
-    "https://github.com/lewis6991/gitsigns.nvim" : "0.3"
-  },
+  "dependencies": [
+    {
+      "src": "https://github.com/user/plugin1"
+    },
+    {
+      "src": "https://github.com/user/plugin2",
+      "version": ">=1.0.0"
+    },
+    {
+      "src": "https://github.com/user/plugin3",
+      "version": "'branch'"
+    }
+  ]
 }
 ```
 

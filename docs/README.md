@@ -1,28 +1,40 @@
 # pkg.json
 
 `pkg.json` is a wild-west "package" format for defining packages without a package system.
-It's a (very) limited subset of NPM's `package.json` that allows any project to declare dependencies on arbitrary URLs.
+It's a (very) limited subset of NPM's `package.json` (except dependencies) that allows any project to declare dependencies on arbitrary URLs.
 
 The initial use-case is for Vim and Emacs plugins (which can be downloaded from anywhere), but the format is designed to be generic.
 
 # TL;DR
 
-```
+```json
 {
-  "name" : "lspconfig", // OPTIONAL cosmetic name, not used for resolution nor filesystem locations.
-  "description" : "Quickstart configurations for the Nvim-lsp client", // OPTIONAL
+  "name": "best-plugin.nvim",
+  "description": "The best plugin for Neovim",
+  "version": "1.0.0",
   "engines": {
-      "nvim": "^0.10.0",
-      "vim": "^9.1.0"
+      "nvim": ">=0.13.0",
+      "vim": ">=9.1.0"
   },
-  "repository": { // REQUIRED
-      "type": "git", // reserved for future use
-      "url": "https://github.com/neovim/nvim-lspconfig"
+  "scripts": {
+    "install": "scripts/install.lua",
+    "preupdate": "scripts/preupdate.vim",
+    "update": "scripts/update.vim",
+    "preuninstall": "scripts/preuninstall.lua"
   },
-  "dependencies" : { // OPTIONAL
-    "https://github.com/neovim/neovim" : "0.6.1",
-    "https://github.com/lewis6991/gitsigns.nvim" : "0.3"
-  },
+  "dependencies": [
+    {
+      "src": "https://github.com/user/plugin1"
+    },
+    {
+      "src": "https://github.com/user/plugin2",
+      "version": ">=1.0.0"
+    },
+    {
+      "src": "https://github.com/user/plugin3",
+      "version": "'branch'"
+    }
+  ]
 }
 ```
 
@@ -30,12 +42,13 @@ The initial use-case is for Vim and Emacs plugins (which can be downloaded from 
 
 - `pkg.json` is just a way to declare dependencies on URLs and versions
 - Decentralized ("federated", omg)
-- Subset of `package.json`
+- Subset of `package.json` (except dependencies)
 - Upstream dependencies don't need a `pkg.json` file.
 - Gives aggregators a way to find plugins for their `engine`.
 
 # Used by:
 
+- [vim.pack](https://neovim.io/doc/user/helptag.html?tag=vim.pack) (official client)
 - [lazy.nvim](https://github.com/folke/lazy.nvim/)
 - TBD
 
@@ -73,5 +86,5 @@ The [package specification](./spec.md) specifies the structure of a package and 
 
 - https://json-schema.org/
 - https://github.com/luarocks/luarocks/wiki/Rockspec-format
-- lazy.nvim [pkg.json impl](https://github.com/folke/lazy.nvim/pull/910/files#diff-eeb8f2e48ace6e2f4c40bf159b7f59e5eb1208e056a3f9f1b9cc6822ecb45371)
+- [`:h vim.pack-manifest`](https://neovim.io/doc/user/helptag.html?tag=vim.pack-manifest)
 - [A way for artifacts to depend on other artifacts.](https://sink.io/jmk/artifact-system)
