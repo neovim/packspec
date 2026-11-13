@@ -2,39 +2,44 @@
 
 ## Example
 
-```
+```json
 {
-  "name" : "lspconfig", // OPTIONAL cosmetic name, not used for resolution nor filesystem locations.
-  "description" : "Quickstart configurations for the Nvim-lsp client", // OPTIONAL
+  "name": "best-plugin.nvim",
+  "description": "The best plugin for Neovim",
+  "version": "1.0.0",
   "engines": {
-      "nvim": "^0.10.0",
-      "vim": "^9.1.0"
+      "nvim": ">=0.13.0",
+      "vim": ">=9.1.0"
   },
-  "repository": { // REQUIRED
-      "type": "git", // reserved for future use
-      "url": "https://github.com/neovim/nvim-lspconfig"
+  "scripts": {
+    "install": "scripts/install.lua",
+    "preupdate": "scripts/preupdate.vim",
+    "update": "scripts/update.vim",
+    "preuninstall": "scripts/preuninstall.lua"
   },
-  "dependencies" : { // OPTIONAL
-    "https://github.com/neovim/neovim" : "0.6.1",
-    "https://github.com/lewis6991/gitsigns.nvim" : "0.3"
-  },
+  "dependencies": [
+    {
+      "src": "https://github.com/user/plugin1"
+    },
+    {
+      "src": "https://github.com/user/plugin2",
+      "version": ">=1.0.0"
+    },
+    {
+      "src": "https://github.com/user/plugin3",
+      "version": "'branch'"
+    }
+  ]
 }
 ```
 
+- All top-level fields are optional.
 - Dependencies aren't required to have a `pkg.json` file. Only required for the "leaf nodes".
     - `pkg.json` can declare a dependency on any random artifact fetchable by URL. The upstream dependency doesn't need a `pkg.json`.
-- Version specifiers in `dependencies` follow the [NPM version range spec](https://devhints.io/semver) ~~[cargo spec](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html)~~
-    - Supported by Nvim `vim.version.range()`.
-    - Extensions to npm version spec:
-        - `"HEAD"` means git HEAD. (npm version spec defines `""` and `"*"` as latest stable version.)
-    - ~~Do NOT support "Combined ranges".~~
-    - Treat any string of length >=7 and lacking "." as a commit-id.
-    - Only support commit-id, tags, and HEAD.
-    - Tags must contain a non-alphanumeric char.
+- Packages distributed as Git repositories SHOULD have a git _tag_ matching its version. Packages SHOULD obey semantic versioning conventions. For all version identifiers, implementation should check for a version prefixed with `v` in the git repository, as this is a common convention.
 - Out of scope:
-    - "pack" (creating a package)
+    - "pack" (creating a package), see [`vim.pack`](https://neovim.io/doc/user/helptag.html?tag=vim.pack)
     - "publish" is out of scope, because `pkg.json` is decentralized. Publishing a package means pushing it to a git repo with a top-level `pkg.json`.
-    - "uninstall" https://docs.npmjs.com/cli/v9/using-npm/scripts#a-note-on-a-lack-of-npm-uninstall-scripts
 
 ## Semantic versioning
 
@@ -47,17 +52,32 @@ This may be relaxed in the future.
 
 ## Fields
 
-* metadata: `pkg.json` allows arbitrary user-defined fields at any nesting level, as long as they don't conflict with specification-owned fields.
-    * Like NPM's `package.json`, this makes the format easy to extend. But application fields should be chosen to avoid potential conflict with fields added to future versions of the spec. For example, `devDependencies` may be added to the spec so applications SHOULD NOT extend the format with that field.
-* `package` (String) the name of the package
-* `version` (String) the version of the package. SHOULD obey semantic versioning conventions. Plugins SHOULD have a git _tag_ matching this version. For all version identifiers, implementation should check for a `version` prefixed with `v` in the git repository, as this is a common convention.
-* `source` (String) The URL of the package source archive. Examples: "http://github.com/downloads/keplerproject/wsapi/wsapi-1.3.4.tar.gz", "git://github.com/keplerproject/wsapi.git". Different protocols are supported: 
-    * `file://` - for URLs in the local filesystem (note that for Unix paths, the root slash is the third slash, resulting in paths like "file:///full/path/filename"
-* `dependencies` (`List[Table]`) Object whose keys are URLs and values are version specifiers.
-    * Compare NPM, where URL is the value rather than the key: [URLs as Dependencies](https://docs.npmjs.com/cli/v9/configuring-npm/package-json#urls-as-dependencies)
+- `name` (`string`) Package name
+- `description` (`string`) Package description
+- `version` (`string`) Package version
+- `engines` (`table`) Supported engine versions. Values should be semver ranges (like `>=0.13` or `1.2.3 - 2.3.4`):
+     - `nvim` (`string`) Version range for Nvim.
+     - `vim` (`string`) Version range for Vim.
+- `dependencies`  (`table[]`) A list of data that package declares as its dependencies. All should be installable with a proper client implementation. Each data has the following fields:
+    - `src` (`string`) REQUIRED Source to install from.
+    - `version` (`string`) Suggested version:
+        - If describes a semver constraint (like `">=1.0.0"`), clients will install if it entirely fits into a constraint specified by the user for this package (if present).
+        - If quoted string (like `"'branch'"`, `"'tag'"`, `"'abcdef123'"`), describes the branch/tag/commit. Clients will install if a constraint specified by the user (if present) is exactly the same target.
+        - If missing, no version is suggested and clients don't have to check for version constraints.
+- `scripts` (`table`) Script locations (relative to package's root) to source (allowed file formats depend on the client capabilities):
+    - `install` (`string`) Post install script.
+    - `preuninstall` (`string`) Pre delete script.
+    - `preupdate` (`string`) Pre update script.
+    - `update` (`string`) Post update script.
+- metadata: `pkg.json` allows arbitrary user-defined fields at any nesting level, as long as they don't conflict with specification-owned fields.
+    - Like NPM's `package.json`, this makes the format easy to extend. But application fields should be chosen to avoid potential conflict with fields added to future versions of the spec. For example, `devDependencies` may be added to the spec so applications SHOULD NOT extend the format with that field.
 
 ## Changes
 
+Stage 2:
+- aligned with [official client implementation](https://neovim.io/doc/user/helptag.html?tag=vim.pack-manifest)
+
+Stage 1:
 - renamed `packspec.json` to `pkg.json`  ~~`deps.json`~~ (to hint that it's basically a subset of NPM's `package.json`)
 - removed `"version" : "0.1.2",` because package version is provided by the `.git` repo info
 - removed `external_dependencies`
